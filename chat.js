@@ -23,10 +23,34 @@ const options = {
 // Socket.io setup
 const io = socketio(server, options);
 
+// io.on = io.of("/").on
 io.on("connection", (socket) => {
-  socket.on("newMessageToServer", (message) => {
-    // socket.emit => sends data to the connected socket
-    // io.emit     => sends data to all the connected sockets
-    io.emit("messageToClient", message);
+  socket.emit("messageFromServer", "Weclome to the socket.io server!");
+
+  socket.on("messageToServer", (dataFromClient) => {
+    console.log(dataFromClient);
   });
+
+  socket.on("newMessageToServer", (message) => {
+    // console.log(message);
+    // io.emit("messageToClients", message);
+    io.of("/").emit("messageToClients", message);
+  });
+
+  // The server can still communicate across namespaces
+  // but on the clientInformation, the socket needs to be in THAT namespace
+  // in order to get the events.
+
+  // This will not run because here we emit an event before
+  // anyone gets connected to the `/admin` namespace.
+  io.of("/admin").emit(
+    "welcome",
+    "Welcome to the admin namespace from the main namespace!"
+  );
+});
+
+io.of("/admin").on("connection", (socket) => {
+  console.log("Someone connected to the admin namespace!");
+
+  io.of("/admin").emit("welcome", "Welcome to the admin namespace!");
 });
