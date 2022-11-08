@@ -31,22 +31,9 @@ io.on("connection", (socket) => {
     console.log(dataFromClient);
   });
 
-  socket.on("newMessageToServer", (message) => {
-    // console.log(message);
-    // io.emit("messageToClients", message);
-    io.of("/").emit("messageToClients", message);
-  });
+  socket.join("room-1");
 
-  // The server can still communicate across namespaces
-  // but on the clientInformation, the socket needs to be in THAT namespace
-  // in order to get the events.
-
-  // This will not run because here we emit an event before
-  // anyone gets connected to the `/admin` namespace.
-  io.of("/admin").emit(
-    "welcome",
-    "Welcome to the admin namespace from the main namespace!"
-  );
+  socket.to("room-1").emit("joined", `${socket.id} joined room-1!`);
 });
 
 io.of("/admin").on("connection", (socket) => {

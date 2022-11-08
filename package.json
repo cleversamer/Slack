@@ -1,12 +1,11 @@
 {
-  "name": "slack",
+  "name": "socketio201",
   "version": "1.0.0",
   "description": "",
-  "main": "chat.js",
+  "main": "slack.js",
   "scripts": {
-    "dev": "nodemon chat.js"
+    "dev": "nodemon slack.js"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
