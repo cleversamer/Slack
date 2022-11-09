@@ -9,7 +9,7 @@ function joinNs(endpoint) {
   }
 
   // Connect to the namespace
-  nsSocket = io(`http://localhost:9000${endpoint}`);
+  nsSocket = io(`https://samer-slack.herokuapp.com${endpoint}`);
 
   nsSocket.on("nsRoomLoad", (nsRooms) => {
     let roomList = document.querySelector(".room-list");
