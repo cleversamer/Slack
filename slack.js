@@ -6,7 +6,9 @@ let namespaces = require("./data/namespaces");
 
 app.use(express.static(__dirname + "/public"));
 
-const expressServer = app.listen(9000);
+const port = process.env["PORT"] || 9000;
+const expressServer = app.listen(port);
+
 const io = socketio(expressServer);
 
 // io.on = io.of('/').on = io.sockets.on
