@@ -1,15 +1,35 @@
 {
-  "name": "socketio201",
+  "name": "salck-clone",
   "version": "1.0.0",
-  "description": "",
+  "description": "Slack clone with JavaScript and Socket.io",
   "main": "slack.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node slack.js",
+    "dev": "nodemon slack.js"
   },
-  "author": "",
+  "author": {
+    "name": "Samer A.",
+    "website": "https://cleversamer.web.app"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript",
+    "node",
+    "express",
+    "socket",
+    "socketio",
+    "socket.io",
+    "websockets",
+    "samer",
+    "cleversamer"
+  ],
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
-    "socket.io": "^2.1.1"
+    "express": "^4.18.2",
+    "socket.io": "^4.5.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }
